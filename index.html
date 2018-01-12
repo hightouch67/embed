@@ -96,8 +96,8 @@
              video.textTracks[0].mode = "showing"; 
           });
           c.appendChild(track);
-      track.addEventListener("load", function() {
-         this.mode = "showing";
+          track.addEventListener("load", function() {
+          this.mode = "showing";
       });
       document.body.appendChild(c);
       player = videojs("player", {
@@ -120,7 +120,7 @@
             'settingsMenuButton': {
               entries: [
               'playbackRateMenuButton',
-              'captionsButton',
+              'captionsButton'
               ]
             },
             'fullscreenToggle': {}
