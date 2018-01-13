@@ -69,7 +69,7 @@
   /**
    * register the thubmnails plugin
    */
-  videojs.registerPlugin('thumbnails', function(options) {
+  videojs.plugin('thumbnails', function(options) {
     var div, settings, img, player, progressControl, duration, moveListener, moveCancel;
     settings = extend({}, defaults, options);
     player = this;
