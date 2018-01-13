@@ -4,8 +4,9 @@
   <link href="https://vjs.zencdn.net/6.2.7/video-js.css" rel="stylesheet">
   <link href="player.css" rel="stylesheet">
   <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
-  <script src="https://vjs.zencdn.net/6.2.7/video.js"></script>
+  <script src="http://vjs.zencdn.net/6.6.0/video.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webtorrent/0.98.20/webtorrent.min.js"></script>
+  <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
   <script src="branding.js"></script>
   <script src="persistvolume.js"></script>
   <script src="resolutionswitcher.js"></script>
@@ -18,8 +19,8 @@
 <body style='margin:0'>
   <script>
     gateways = [
-      "https://ipfs.infura.io",
       "https://ipfs.io",
+      "https://ipfs.infura.io",
       "https://gateway.ipfs.io",
       "https://scrappy.i.ipfs.io",
       "https://chappy.i.ipfs.io"
@@ -43,7 +44,7 @@
       var a = JSON.parse(b.json_metadata).video;
 
       var qualities = generateQualities(a, videoGateway)
-      createPlayer(canonicalUrl(a.info.snaphash), autoplay, nobranding, qualities, a.info.spritehash, a.info.duration)
+      createPlayer(canonicalUrl(a.info.snaphash), autoplay, nobranding, qualities, a.info.spritehash, a.info.duration, a.info.captions)
 
       // trying to find something that answers faster than the canonical gateway
       if (!videoGateway)
@@ -73,7 +74,7 @@
       }
     });
 
-    function createPlayer(posterUrl, autoplay, branding, qualities, sprite, duration) {
+    function createPlayer(posterUrl, autoplay, branding, qualities, sprite, duration, captions) {
       var c = document.createElement("video");
       c.poster = posterUrl;
       c.controls = true;
@@ -90,7 +91,10 @@
           track.kind = "captions";
           track.label = "English";
           track.srclang = "en";
-          track.src = "example-captions.vtt"; // TODO
+          track.src = "https://hightouch67.github.io/embed/example-captions.vtt"; // TODO
+          // track.label = captions.label;
+          // track.srclang = captions.srclang;
+          // track.src = captions.src;
           track.addEventListener("load", function() {
              this.mode = "showing";
              video.textTracks[0].mode = "showing"; 
@@ -139,9 +143,9 @@
       if (sprite) {
         var listThumbnails = {}
         var nFrames = 100
-        if (duration < 100) nFrames = Math.floor(duration)
         for (let s = 0; s < nFrames; s++) {
           var nSeconds = nFrames
+          if (duration < 100) nSeconds = Math.floor(duration)
           if (duration > 100) nSeconds = Math.floor(s*duration/100)
           listThumbnails[nSeconds] = {
             src: canonicalUrl(sprite),
