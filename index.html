@@ -13,7 +13,7 @@
   <script src="settingsmenuitem.js"></script>
   <script src="hotkeys.js"></script>
   <script src="thumbnails.js"></script>
-  <script src="captionstoogle.js"></script>
+  <script src="captionstoggle.js"></script>
 </head>
 
 <body style='margin:0'>
@@ -44,7 +44,7 @@
       var a = JSON.parse(b.json_metadata).video;
 
       var qualities = generateQualities(a, videoGateway)
-      createPlayer(canonicalUrl(a.info.snaphash), autoplay, nobranding, qualities, a.info.spritehash, a.info.duration)
+      createPlayer(canonicalUrl(a.info.snaphash), autoplay, nobranding, qualities, a.info.spritehash, a.info.duration, a.info.captions)
 
       // trying to find something that answers faster than the canonical gateway
       if (!videoGateway)
@@ -74,7 +74,7 @@
       }
     });
 
-    function createPlayer(posterUrl, autoplay, branding, qualities, sprite, duration) {
+    function createPlayer(posterUrl, autoplay, branding, qualities, sprite, duration, captions) {
       var c = document.createElement("video");
       c.poster = posterUrl;
       c.controls = true;
@@ -87,22 +87,24 @@
           itLoaded = true
         }
       });
+
+      //if(captions){
       track = document.createElement("track");
-          track.kind = "captions";
-          track.label = "English";
-          track.srclang = "en";
-          track.src = "https://hightouch67.github.io/embed/example-captions.vtt"; // TODO
-          // track.label = captions.label;
-          // track.srclang = captions.srclang;
-          // track.src = captions.src;
-          track.addEventListener("load", function() {
-             this.mode = "showing";
-             video.textTracks[0].mode = "showing"; 
-          });
-          c.appendChild(track);
-          track.addEventListener("load", function() {
-          this.mode = "showing";
+      track.kind = "captions";
+      track.label = "English";
+      track.srclang = "en";
+      track.src = "https://hightouch67.github.io/embed/example-captions.vtt"; // TODO
+      // track.label = captions.label;
+      // track.srclang = captions.srclang;
+      // track.src = canonicalUrl(captions.src);
+      c.appendChild(track);
+      track.addEventListener("load", function () {
+        this.mode = "showing";
+        video.textTracks[0].mode = "showing";
       });
+
+      //}
+
       document.body.appendChild(c);
       player = videojs("player", {
         inactivityTimeout: 1000,
@@ -121,11 +123,12 @@
             'liveDisplay': {},
             'flexibleWidthSpacer': {},
             'progressControl': {},
-            'captionsToogle':{},
+            'captionsToogle': {},
             'settingsMenuButton': {
               entries: [
-              'playbackRateMenuButton',
-              'captionsButton'
+                'playbackRateMenuButton',
+                'captionsButton',
+                // 'videoJsResolutionSwitcher'
               ]
             },
             'fullscreenToggle': {}
@@ -147,16 +150,17 @@
         for (let s = 0; s < nFrames; s++) {
           var nSeconds = nFrames
           if (duration < 100) nSeconds = Math.floor(duration)
-          if (duration > 100) nSeconds = Math.floor(s*duration/100)
+          if (duration > 100) nSeconds = Math.floor(s * duration / 100)
           listThumbnails[nSeconds] = {
             src: canonicalUrl(sprite),
             style: {
-              margin: -118*s+'px 0px 0px 0px',
+              margin: -118 * s + 'px 0px 0px 0px',
             }
           }
         }
         player.thumbnails(listThumbnails);
       }
+
 
       videojs('player').ready(function () {
         this.hotkeys({

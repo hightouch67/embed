@@ -170,22 +170,23 @@
 }
 
 .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
-  background-color: transparent;
+  background-color: #262626;
   display: table;
   /* padding-bottom: .5em; */
   /* bottom: 0px; */
   float: right;
   position: fixed;
-  right: 0px;
-  bottom: 36px;
+  right: 10px;
+  bottom: 50px;
   width: 200px;
   margin-right: 0px;
-  padding-right: 0px;
-  border-top: 5px red solid!important;
+  padding: 5px;
+  border-top: 2px red solid!important;
+  border-radius: 5px;
+  
 }
 
 .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-item,.video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-title {
-  background-color: #00000091;
   margin: 0;
   padding: .5em;
   text-align: right!important;
@@ -193,6 +194,10 @@
 
 .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-item.vjs-selected {
   background-color: #d8d8d8
+}
+.vjs-selected 
+{
+  background-color: #d8d8d8;
 }
 
 .video-js .vjs-big-play-button {
@@ -214,6 +219,17 @@
 
 .video-js .vjs-control-bar2 {
   background-color: #000000
+}
+.vjs-modal-dialog.vjs-text-track-settings{
+  color:black;
+  background-color: #262626;
+  border-radius: 5px;
+  width: 70%;
+  margin: auto;
+  position: relative;
+}
+.vjs-close-button.vjs-control.vjs-button{
+  color:white
 }
 
 .video-js .vjs-control-bar {
@@ -539,6 +555,8 @@ a:-webkit-any-link {
  display: none!important;
 }
 
+
+
 .vjs-menu-button-popup .vjs-menu {
   display: none;
   position: absolute;
@@ -551,17 +569,12 @@ a:-webkit-any-link {
 }
 
 .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
-  background-color: #2B333F;
+  background-color: #262626;
   background-color: rgb(0, 0, 0);
   position: absolute;
   width: 100%;
   bottom: 1.3em;
   max-height: 15em
-}
-
-.vjs-workinghover .vjs-menu-button-popup:hover .vjs-menu,
-.vjs-menu-button-popup .vjs-menu.vjs-lock-showing {
-  display: block
 }
 
 .video-js .vjs-menu-button-inline {
@@ -700,6 +713,9 @@ a:-webkit-any-link {
       }
       .vjs-menu-item {
         text-align: right!important;
+      }
+      .vjs-menu-item:hover {
+        background-color: black;
       }
       .vjs-settings-sub-menu-value,
       .vjs-settings-sub-menu-title {
