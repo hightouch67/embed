@@ -4,9 +4,8 @@
   <link href="https://vjs.zencdn.net/6.2.7/video-js.css" rel="stylesheet">
   <link href="player.css" rel="stylesheet">
   <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
-  <script src="https://vjs.zencdn.net/6.6.0/video.js"></script>
+  <script src="https://vjs.zencdn.net/6.2.7/video.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webtorrent/0.98.20/webtorrent.min.js"></script>
-  <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
   <script src="branding.js"></script>
   <script src="persistvolume.js"></script>
   <script src="resolutionswitcher.js"></script>
@@ -14,6 +13,7 @@
   <script src="settingsmenuitem.js"></script>
   <script src="hotkeys.js"></script>
   <script src="thumbnails.js"></script>
+  <script src="captionstoogle.js"></script>
 </head>
 
 <body style='margin:0'>
@@ -44,7 +44,7 @@
       var a = JSON.parse(b.json_metadata).video;
 
       var qualities = generateQualities(a, videoGateway)
-      createPlayer(canonicalUrl(a.info.snaphash), autoplay, nobranding, qualities, a.info.spritehash, a.info.duration, a.info.captions)
+      createPlayer(canonicalUrl(a.info.snaphash), autoplay, nobranding, qualities, a.info.spritehash, a.info.duration)
 
       // trying to find something that answers faster than the canonical gateway
       if (!videoGateway)
@@ -74,7 +74,7 @@
       }
     });
 
-    function createPlayer(posterUrl, autoplay, branding, qualities, sprite, duration, captions) {
+    function createPlayer(posterUrl, autoplay, branding, qualities, sprite, duration) {
       var c = document.createElement("video");
       c.poster = posterUrl;
       c.controls = true;
@@ -121,6 +121,7 @@
             'liveDisplay': {},
             'flexibleWidthSpacer': {},
             'progressControl': {},
+            'captionsToogle':{},
             'settingsMenuButton': {
               entries: [
               'playbackRateMenuButton',
@@ -156,7 +157,6 @@
         }
         player.thumbnails(listThumbnails);
       }
-      
 
       videojs('player').ready(function () {
         this.hotkeys({
