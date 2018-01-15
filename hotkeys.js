@@ -118,7 +118,7 @@
                                 c && r.muted(!r.muted());
                                 break;
                             case 7:
-                                m && (r.isFullscreen() ? r.exitFullscreen() : r.requestFullscreen()) ;
+                                m && (r.isFullscreen() ? r.exitFullscreen() : r.requestFullscreen()), u && r.play() ;
                                 break;
                             default:
                                 if ((s > 47 && s < 59 || s > 95 && s < 106) && (d || !(e.metaKey || e.ctrlKey || e.altKey)) && y) {
