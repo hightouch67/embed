@@ -201,7 +201,7 @@
 }
 
 .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
-    background-color: #000000c2;
+    background-color: #111111;
     display: table;
     /* padding-bottom: .5em; */
     /* bottom: 0px; */
@@ -214,6 +214,7 @@
     padding: 5px;
     border-top: 2px red solid!important;
     border-radius: 5px;
+    min-height: 84px;
 }
 
 .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-item,

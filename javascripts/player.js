@@ -107,7 +107,7 @@ function createPlayer(posterUrl, autoplay, branding, qualities, sprite, duration
                     entries: [
                         'playbackRateMenuButton',
                         'captionsButton',
-                        'ResolutionMenuButton'
+                        //'ResolutionMenuButton'
                     ]
                 },
                 'fullscreenToggle': {}
