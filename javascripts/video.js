@@ -15396,10 +15396,7 @@ var MenuButton = function (_Component) {
     // When you click the button it adds focus, which will show the menu.
     // So we'll remove focus when the mouse leaves the button. Focus is needed
     // for tab navigation.
-    console.log(this.menuButton_.focus())
-    console.log(this.menuButton_)
     this.one(this.menu.contentEl(), 'mouseleave', bind(this, function (e) {
-     if(this.menuButton_.focus()== true)
       this.unpressButton();
       this.el_.blur();
     }));
