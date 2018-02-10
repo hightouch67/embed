@@ -932,8 +932,12 @@ body.vjs-full-window {
     height: 0.3em;
 }
 
-.video-js .vjs-progress-control .vjs-progress-holder {
+.video-js .vjs-progress-control > .video-js .vjs-progress-control .vjs-progress-holder{
     margin: 0 10px;
+}
+
+.video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-active .vjs-progress-control, .video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-inactive .vjs-progress-control, .video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-active .vjs-progress-control, .video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-inactive .vjs-progress-control, .video-js.vjs-has-started.vjs-playing.vjs-user-inactive .vjs-progress-control > .video-js .vjs-progress-control .vjs-progress-holder {
+    margin: 0 0px;
 }
 
 .video-js .vjs-progress-control:hover .vjs-progress-holder {
@@ -1053,7 +1057,7 @@ body.vjs-full-window {
     position: relative;
     cursor: pointer;
     padding: 0;
-    margin: 0 0.45em 0 0.45em;
+    /* margin: 0 0.45em 0 0.45em; */
     /* iOS Safari */
     -webkit-touch-callout: none;
     /* Safari */

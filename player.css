@@ -471,6 +471,7 @@ a:-webkit-any-link {
     height: .4em;
     top: .75em;
     padding-top: 0em;
+    margin: 0px 10px;
     -webkit-transition: height .15s, top .15s;
     -moz-transition: height .15s, top .15s;
     -ms-transition: height .15s, top .15s;
@@ -526,13 +527,14 @@ a:-webkit-any-link {
 .video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-inactive .vjs-progress-control,
 .video-js.vjs-has-started.vjs-playing.vjs-user-inactive .vjs-progress-control {
     height: .25em;
-    top: -.25em;
+    top: -.15em;
     pointer-events: none;
     -webkit-transition: height 0s, top 0s;
     -moz-transition: height 0s, top 0s;
     -ms-transition: height 0s, top 0s;
     -o-transition: height 0s, top 0s;
-    transition: height 0s, top 0s
+    transition: height 0s, top 0s;
+    margin:0px 0px!important;
 }
 
 .video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-active.vjs-fullscreen .vjs-progress-control,
